@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>RS-1 Surveyor | Ornecho</title>
+  <meta name="description" content="RS-1 is an autonomous VTOL drone that maps RF signal coverage in three dimensions. It takes off vertically, surveys a site layer by layer, and lands with a geotagged 3D coverage map.">
+  <meta name="theme-color" content="#000000">
+  <meta property="og:title" content="RS-1 Surveyor | Ornecho">
+  <meta property="og:image" content="assets/ornecho-logo.png">
+  <meta property="og:description" content="Autonomous 3D RF coverage mapping from a VTOL fixed-wing drone.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="assets/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" id="top">
+  <div class="nav__inner">
+    <a class="brand" href="#top" aria-label="Ornecho home">
+      <img class="brand__mark" src="assets/ornecho-mark.png" alt="" width="740" height="477">
+      <img class="brand__word" src="assets/ornecho-wordmark.png" alt="Ornecho" width="874" height="170">
+    </a>
+    <nav class="nav__menu" id="nav-menu" aria-label="Primary">
+      <a href="#vehicle">Vehicle</a>
+      <a href="#mission">Mission</a>
+      <a href="#technology">Technology</a>
+      <a href="#applications">Applications</a>
+      <a href="#company">Company</a>
+      <a class="nav__cta" href="#contact">Request access</a>
+    </nav>
+    <button class="nav__toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+      <span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- Hero: live mission replay -->
+  <section class="hero">
+    <div class="hero__stage">
+      <canvas id="mission-canvas" role="img" aria-label="Simulated RS-1 mission: the aircraft takes off vertically, climbs to 100 metres, surveys the top layer on a lawn-mower path, glides down to survey layers at 70 and 40 metres while a signal-strength heat map fills in, then returns, lands vertically and offloads its data over WiFi. A mission clock, event timeline and gauges for speed, altitude, battery and points logged run along the bottom."></canvas>
+    </div>
+    <div class="hero__copy">
+      <p class="kicker">In development &middot; 2026</p>
+      <h1>RS-1 Surveyor</h1>
+      <p class="hero__sub">Autonomous 3D RF coverage mapping. Vertical takeoff, layer-by-layer survey, a coverage map on landing.</p>
+      <div class="actions">
+        <a class="btn" href="#vehicle">Learn more <span aria-hidden="true">&rarr;</span></a>
+        <a class="btn btn--ghost" href="#contact">Request access</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Problem -->
+  <section class="section" id="problem">
+    <div class="wrap">
+      <h2 class="duo"><span>Coverage data</span> <strong>has blind spots</strong></h2>
+      <p class="lede">Carriers, campuses and network planners decide where to build from data that is biased, inconsistent or out of date.</p>
+      <div class="cols cols--3">
+        <article class="col">
+          <span class="col__num">01</span>
+          <h3>Crowdsourced data</h3>
+          <p>Only devices that already have a connection can report back. The places with the worst coverage are the least likely to appear in the data, so maps look better than reality.</p>
+        </article>
+        <article class="col">
+          <span class="col__num">02</span>
+          <h3>Manual surveys</h3>
+          <p>Antenna height, tilt and even the technician's own body change the reading, and more so at higher frequencies. Two crews surveying the same site can come back with different answers.</p>
+        </article>
+        <article class="col">
+          <span class="col__num">03</span>
+          <h3>Predictive models</h3>
+          <p>Simulation fills the gaps between measurements, but it can't see a new building, seasonal foliage or terrain that has changed since the last survey.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Full-bleed: the 3D map -->
+  <section class="panel" id="map">
+    <canvas id="map-canvas" role="img" aria-label="Three stacked signal-strength layers at 40, 70 and 100 metres over a survey area, highlighted one at a time."></canvas>
+    <div class="panel__copy">
+      <p class="kicker">The output</p>
+      <h2>One flight.<br>Three altitudes.<br>One 3D map.</h2>
+      <p class="panel__sub">RS-1 measures coverage directly from the air, on a repeatable path, at every altitude you care about. No device bias, no operator in the antenna's near field, the same flight plan every time.</p>
+      <a class="btn" href="#mission">How it works <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </section>
+
+  <!-- How it works -->
+  <section class="section" id="mission">
+    <div class="wrap">
+      <p class="kicker">Mission profile</p>
+      <h2 class="title">From survey volume to 3D map</h2>
+      <ol class="steps">
+        <li>
+          <span class="steps__num">01</span>
+          <h3>Plan</h3>
+          <p>Define the survey volume in the ground station app. The planner splits it into altitude layers and generates a boustrophedon (lawn-mower) path for each one.</p>
+        </li>
+        <li>
+          <span class="steps__num">02</span>
+          <h3>Launch</h3>
+          <p>RS-1 lifts off vertically on four lift motors, transitions to wing-borne flight at 30 m and climbs as a plane to the top layer. No runway, no launcher.</p>
+        </li>
+        <li>
+          <span class="steps__num">03</span>
+          <h3>Survey</h3>
+          <p>It flies the top layer first, then glides down to each layer below. A mmWave radar watches for obstacles while the RF payload samples and geotags signal strength.</p>
+        </li>
+        <li>
+          <span class="steps__num">04</span>
+          <h3>Deliver</h3>
+          <p>RS-1 returns home, lands vertically and offloads its log over WiFi. The ground station builds a 3D coverage map you can slice by altitude and export.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Vehicle -->
+  <section class="section section--line" id="vehicle">
+    <div class="wrap vehicle">
+      <div class="vehicle__info">
+        <p class="kicker">Vehicle</p>
+        <h2 class="title">RS-1 Surveyor</h2>
+        <div class="units" role="group" aria-label="Units">
+          <button type="button" class="units__btn is-on" data-units="metric" aria-pressed="true">Metric</button>
+          <button type="button" class="units__btn" data-units="us" aria-pressed="false">US</button>
+        </div>
+        <dl class="stats">
+          <div><dt>Wingspan</dt><dd><span data-metric="1.13 m" data-us="3.7 ft">1.13 m</span></dd></div>
+          <div><dt>Length</dt><dd><span data-metric="0.70 m" data-us="2.3 ft">0.70 m</span></dd></div>
+          <div><dt>Takeoff mass <em>est.</em></dt><dd><span data-metric="2.8 kg" data-us="6.2 lb">2.8 kg</span></dd></div>
+          <div><dt>Endurance <em>target</em></dt><dd>1&ndash;1.5 h</dd></div>
+          <div><dt>Survey ceiling</dt><dd><span data-metric="120 m" data-us="400 ft">120 m</span></dd></div>
+          <div><dt>Configuration</dt><dd>4 lift + 1 pusher</dd></div>
+        </dl>
+        <p class="body">A swept flying wing carries four lift rotors on carbon booms for vertical takeoff and landing. In cruise, the lift motors shut down and a single rear pusher does the work, which is what makes hour-scale endurance possible. Hover-to-cruise transitions are handled by ArduPilot QuadPlane.</p>
+      </div>
+      <div class="vehicle__art">
+        <svg class="airframe" viewBox="-30 20 500 300" role="img" aria-label="Top-down line drawing of the RS-1 quadplane: a swept flying wing with two booms carrying four lift rotors and a rear pusher propeller.">
+          <g class="af-rotor">
+            <circle cx="159" cy="105" r="26"/><circle cx="281" cy="105" r="26"/>
+            <circle cx="159" cy="250" r="26"/><circle cx="281" cy="250" r="26"/>
+          </g>
+          <path class="af-wing" d="M232 102L380 198Q386 202 386 210L385 232Q384 238 378 238L232 222H208L62 238Q56 238 55 232L54 210Q54 202 60 198L208 102Z"/>
+          <path class="af-hinge" d="M300 220L372 228M140 220L68 228"/>
+          <g class="af-boom">
+            <rect x="156" y="102" width="6" height="151" rx="3"/><rect x="278" y="102" width="6" height="151" rx="3"/>
+          </g>
+          <g class="af-blade"><path d="M159 81V129M281 81V129M159 226V274M281 226V274"/></g>
+          <g class="af-motor">
+            <circle cx="159" cy="105" r="6"/><circle cx="281" cy="105" r="6"/>
+            <circle cx="159" cy="250" r="6"/><circle cx="281" cy="250" r="6"/>
+          </g>
+          <path class="af-body" d="M220 60C236 60 241 95 241 135L238 230C236 252 229 262 220 262C211 262 204 252 202 230L199 135C199 95 204 60 220 60Z"/>
+          <ellipse class="af-canopy" cx="220" cy="110" rx="9" ry="22"/>
+          <path class="af-pusher" d="M184 270H256"/>
+          <g class="af-callout">
+            <path d="M220 60L220 36H120"/><text x="116" y="40" text-anchor="end">MMWAVE RADAR</text>
+            <path d="M300 92L330 50H350"/><text x="354" y="54">LIFT ROTORS &times;4</text>
+            <path d="M352 226L372 290H390"/><text x="394" y="294">ELEVONS</text>
+            <path d="M188 272L150 300H120"/><text x="116" y="304" text-anchor="end">PUSHER</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology -->
+  <section class="section section--line" id="technology">
+    <div class="wrap">
+      <p class="kicker">Technology</p>
+      <h2 class="title">Engineered in-house</h2>
+      <p class="lede">The subsystems are split across separate boards so each one can be serviced, upgraded or swapped on its own.</p>
+
+      <div class="feature">
+        <div class="feature__body">
+          <h3>Avionics</h3>
+          <p>Power conversion, the central control unit (CCU) and the flight controller share one main board. The CCU takes mission commands from the ground link, translates them to MAVLink for the flight controller, and coordinates the radar and RF payload over a CAN bus.</p>
+          <ul class="list">
+            <li>Dual STM32H743 processors: one for the CCU, one for the flight controller</li>
+            <li>IMU, magnetometer, barometer and GPS fused by an Extended Kalman Filter</li>
+            <li>Protected buck power stage feeding the 5 V and 3.3 V rails</li>
+          </ul>
+        </div>
+        <div class="feature__art">
+          <svg class="diagram" viewBox="0 0 480 320" role="img" aria-label="Diagram: IMU, magnetometer, barometer and GPS feed an Extended Kalman Filter, whose position and attitude estimate drives flight control and geotags every RSSI sample.">
+            <defs><marker id="arr-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#fff"/></marker></defs>
+            <g class="dg-node">
+              <rect x="20" y="34" width="132" height="44"/><text x="86" y="61">IMU</text>
+              <rect x="20" y="96" width="132" height="44"/><text x="86" y="123">MAGNETOMETER</text>
+              <rect x="20" y="158" width="132" height="44"/><text x="86" y="185">BAROMETER</text>
+              <rect x="20" y="220" width="132" height="44"/><text x="86" y="247">GPS</text>
+            </g>
+            <g class="dg-wire">
+              <path d="M152 56C190 56 186 149 210 149" marker-end="url(#arr-a)"/>
+              <path d="M152 118C184 118 190 149 210 149"/>
+              <path d="M152 180C184 180 190 149 210 149"/>
+              <path d="M152 242C190 242 186 149 210 149"/>
+            </g>
+            <g class="dg-core">
+              <circle cx="250" cy="149" r="40"/>
+              <text x="250" y="148" class="dg-core__big">EKF</text>
+              <text x="250" y="166" class="dg-core__small">SENSOR FUSION</text>
+            </g>
+            <g class="dg-wire">
+              <path d="M290 132C320 132 320 92 346 92" marker-end="url(#arr-a)"/>
+              <path d="M290 166C320 166 320 206 346 206" marker-end="url(#arr-a)"/>
+            </g>
+            <g class="dg-node dg-node--out">
+              <rect x="350" y="66" width="114" height="52"/><text x="407" y="89">FLIGHT</text><text x="407" y="106">CONTROL</text>
+              <rect x="350" y="180" width="114" height="52"/><text x="407" y="203">GEOTAG EVERY</text><text x="407" y="220">RSSI SAMPLE</text>
+            </g>
+            <text x="250" y="296" class="dg-caption">POSITION, ATTITUDE AND ALTITUDE, MANY TIMES A SECOND</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="feature">
+        <div class="feature__body">
+          <h3>RF payload</h3>
+          <p>The RF payload is a self-contained daughter board. It samples received power across the 2.4&ndash;2.5&nbsp;GHz band, averages a burst of readings at each point, geotags the result and writes it to local storage. To measure a different band, swap the board.</p>
+          <ul class="list">
+            <li>Antenna, band-pass filter and RF power detector on a 50&nbsp;&Omega; controlled-impedance path</li>
+            <li>RF section simulated in AWR Microwave Office and Ansys HFSS before fabrication</li>
+            <li>WiFi stays off for the whole survey, so the payload never measures its own transmitter</li>
+          </ul>
+        </div>
+        <div class="feature__art">
+          <svg class="diagram" viewBox="0 0 480 320" role="img" aria-label="Signal chain: antenna, band-pass filter, RF power detector, controller that averages and geotags, microSD log, and WiFi offload after landing.">
+            <defs><marker id="arr-b" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#fff"/></marker></defs>
+            <g class="dg-node">
+              <rect x="16" y="40" width="120" height="76"/><rect x="180" y="40" width="120" height="76"/><rect x="344" y="40" width="120" height="76"/>
+              <rect x="344" y="196" width="120" height="64"/><rect x="180" y="196" width="120" height="64"/>
+              <rect x="16" y="196" width="120" height="64" class="dg-dashed"/>
+            </g>
+            <g class="dg-icon">
+              <path d="M76 92V62M64 56l12 6 12-6M66 72a14 14 0 0 1 20 0"/>
+              <path d="M206 78c6-14 10-14 16 0s10 14 16 0 10-14 16 0 10 14 16 0"/>
+              <path d="M372 92h16l8-28 8 28h16"/>
+            </g>
+            <g class="dg-label">
+              <text x="76" y="138">ANTENNA</text><text x="240" y="138">BAND-PASS FILTER</text><text x="404" y="138">POWER DETECTOR</text>
+              <text x="404" y="224">CONTROLLER</text><text x="240" y="224">MICROSD</text><text x="76" y="224">WIFI</text>
+            </g>
+            <g class="dg-sub">
+              <text x="76" y="156">50 &#937; matched</text><text x="240" y="156">2.4&#8211;2.5 GHz</text><text x="404" y="156">&#8722;32 to +12 dBm</text>
+              <text x="404" y="242">average + geotag</text><text x="240" y="242">checksummed log</text><text x="76" y="242">after landing</text>
+            </g>
+            <g class="dg-wire">
+              <path d="M136 78H176" marker-end="url(#arr-b)"/><path d="M300 78H340" marker-end="url(#arr-b)"/>
+              <path d="M404 164V192" marker-end="url(#arr-b)"/><path d="M344 228H304" marker-end="url(#arr-b)"/>
+              <path d="M180 228H140" marker-end="url(#arr-b)" class="dg-dashed"/>
+            </g>
+            <text x="240" y="300" class="dg-caption">THE PAYLOAD NEVER MEASURES ITS OWN TRANSMITTER</text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="cols cols--4">
+        <article class="col">
+          <h3>Obstacle radar</h3>
+          <p>TI IWR6843 FMCW radar at 60&ndash;64&nbsp;GHz, the band the FCC allows for radar on unmanned aircraft. Results go to the CCU over CAN.</p>
+        </article>
+        <article class="col">
+          <h3>Dual-link comms</h3>
+          <p>Commands and telemetry over a 915&nbsp;MHz ExpressLRS link with 4&ndash;7&nbsp;ms latency. Bulk survey data comes back over WiFi after landing.</p>
+        </article>
+        <article class="col">
+          <h3>Data integrity</h3>
+          <p>Compact binary logs with a checksum on every record. Sequence IDs make WiFi transfers resumable if the link drops.</p>
+        </article>
+        <article class="col">
+          <h3>Mission software</h3>
+          <p>The ground station plans the coverage path, monitors the flight live and builds the final 3D map.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Architecture -->
+  <section class="section section--line" id="architecture">
+    <div class="wrap">
+      <p class="kicker">System architecture</p>
+      <h2 class="title">Light on the aircraft. Heavy lifting on the ground.</h2>
+      <p class="lede">Path planning and data processing run on the ground station, which keeps the aircraft's electronics small and power-efficient. Flight-critical decisions such as stabilisation and failsafes stay on board for fast response.</p>
+
+      <div class="arch">
+        <div class="arch__box arch__gs">
+          <p class="arch__title">Ground station</p>
+          <ul>
+            <li>Survey volume &amp; layer setup</li>
+            <li>Coverage path generation</li>
+            <li>Live telemetry &amp; overrides</li>
+            <li>3D map &amp; export</li>
+          </ul>
+        </div>
+        <div class="arch__links">
+          <div class="arch__link"><span class="arch__wire"></span><span class="arch__tag">LoRa &middot; ExpressLRS 915 MHz<small>Commands + telemetry</small></span></div>
+          <div class="arch__link arch__link--dash"><span class="arch__wire"></span><span class="arch__tag">WiFi<small>Post-flight data offload</small></span></div>
+        </div>
+        <div class="arch__box arch__air">
+          <p class="arch__title">RS-1 aircraft</p>
+          <div class="arch__main">
+            <p class="arch__label">Main board</p>
+            <div class="arch__cells">
+              <div class="arch__cell"><b>Power</b><span>Battery to 5 V / 3.3 V rails</span></div>
+              <div class="arch__cell"><b>CCU</b><span>Ground link &harr; MAVLink bridge</span><em>LoRa</em></div>
+              <div class="arch__cell"><b>Flight controller</b><span>ArduPilot &middot; EKF</span></div>
+            </div>
+          </div>
+          <div class="arch__bus"><span>CAN 2.0 bus</span></div>
+          <div class="arch__cells arch__cells--2">
+            <div class="arch__cell"><b>Radar board</b><span>60&ndash;64 GHz FMCW</span></div>
+            <div class="arch__cell"><b>RF payload board</b><span>2.4 GHz detector &middot; microSD</span><em>WiFi</em></div>
+          </div>
+          <p class="arch__prop">4S3P Li-ion pack <i>&rarr;</i> ESCs <i>&rarr;</i> 4 lift + 1 pusher motors</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Specs -->
+  <section class="section section--line" id="specs">
+    <div class="wrap">
+      <p class="kicker">Specifications</p>
+      <h2 class="title">RS-1 at a glance</h2>
+      <div class="specs">
+        <dl>
+          <div><dt>Configuration</dt><dd>Quadplane VTOL flying wing</dd></div>
+          <div><dt>Battery</dt><dd>4S3P Li-ion, 8.4 Ah, high-drain cells</dd></div>
+          <div><dt>Flight stack</dt><dd>ArduPilot QuadPlane</dd></div>
+          <div><dt>Launch &amp; recovery</dt><dd>Vertical, from a small clearing</dd></div>
+          <div><dt>Mission</dt><dd>Fully autonomous, operator override</dd></div>
+          <div><dt>Regulatory</dt><dd>FAA Part 107, below 400 ft AGL</dd></div>
+        </dl>
+        <dl>
+          <div><dt>Metric</dt><dd>Received signal strength (RSSI)</dd></div>
+          <div><dt>Band</dt><dd>2.4&ndash;2.5 GHz ISM</dd></div>
+          <div><dt>Detector range</dt><dd>&minus;32 to +12 dBm</dd></div>
+          <div><dt>Position tagging</dt><dd>EKF: IMU, GPS, barometer</dd></div>
+          <div><dt>Obstacle detection</dt><dd>60&ndash;64 GHz FMCW radar</dd></div>
+          <div><dt>Links</dt><dd>LoRa 915 MHz &middot; WiFi 6 offload</dd></div>
+        </dl>
+      </div>
+      <p class="fineprint">RS-1 is in active development. Values marked target or est. are design goals and estimates being validated in flight testing. All specifications are subject to change.</p>
+    </div>
+  </section>
+
+  <!-- Applications -->
+  <section class="section section--line" id="applications">
+    <div class="wrap">
+      <p class="kicker">Applications</p>
+      <h2 class="title">Built for the places coverage data misses</h2>
+      <div class="cols cols--4">
+        <article class="col">
+          <span class="col__num">01</span>
+          <h3>Rural &amp; last-mile</h3>
+          <p>Survey large rural areas quickly and find real coverage gaps before committing to new infrastructure.</p>
+        </article>
+        <article class="col">
+          <span class="col__num">02</span>
+          <h3>Campuses &amp; venues</h3>
+          <p>Map 2.4&nbsp;GHz coverage around buildings, stadiums and outdoor spaces, layer by layer.</p>
+        </article>
+        <article class="col">
+          <span class="col__num">03</span>
+          <h3>Private networks &amp; IoT</h3>
+          <p>Place access points and gateways across farms, ports and industrial sites from measured data.</p>
+        </article>
+        <article class="col">
+          <span class="col__num">04</span>
+          <h3>Research</h3>
+          <p>Fly the same path again and again for repeatable propagation studies. Swap the payload to study new bands.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roadmap -->
+  <section class="section section--line" id="roadmap">
+    <div class="wrap">
+      <p class="kicker">Roadmap</p>
+      <h2 class="title">Where RS-1 is today</h2>
+      <ol class="timeline">
+        <li class="is-done">
+          <span class="timeline__when">2026 &middot; Complete</span>
+          <h3>Hardware built</h3>
+          <p>Main board and RF payload board designed and fabricated. Power rails, CAN bus, IMU, magnetometer, barometer and GPS verified. Full airframe printed.</p>
+        </li>
+        <li class="is-now">
+          <span class="timeline__when">Fall 2026 &middot; In progress</span>
+          <h3>Flight software &amp; propulsion</h3>
+          <p>Porting ArduPilot to our flight controller, finalising propulsion and thrust-testing on the real battery pack.</p>
+        </li>
+        <li>
+          <span class="timeline__when">Spring 2027</span>
+          <h3>First flights</h3>
+          <p>Hover and transition tests, then the first fully autonomous survey and 3D coverage map.</p>
+        </li>
+        <li>
+          <span class="timeline__when">2027</span>
+          <h3>Pilot program</h3>
+          <p>Field surveys with early partners to validate RS-1 on real sites.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Company -->
+  <section class="section section--line" id="company">
+    <div class="wrap">
+      <p class="kicker">Company</p>
+      <h2 class="title">The team</h2>
+      <p class="lede">Ornecho is a seven-person engineering team in Newark, New Jersey, working across RF, embedded systems, power electronics and flight control. RS-1 Surveyor is our first product.</p>
+      <ul class="team">
+        <li>Arsh Bhamla</li>
+        <li>Nisarg Desai</li>
+        <li>Christian Dunay</li>
+        <li>Alban Ferati</li>
+        <li>Pranay KC</li>
+        <li>Shreedhar Rajendran</li>
+        <li>Brandon Wong</li>
+      </ul>
+      <p class="fineprint">With thanks to Yassa Beshai and Valmik Revankar for technical guidance, and Leyla Fuentes for our PCB silkscreen artwork.</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="cta" id="contact">
+    <div class="wrap">
+      <img class="cta__logo" src="assets/ornecho-logo-white.png" alt="Ornecho" width="874" height="688" loading="lazy">
+      <p class="kicker">Pilot program</p>
+      <h2>Have a site to survey?</h2>
+      <p class="lede">We're looking for early partners. Tell us about your network and we'll be in touch.</p>
+      <!-- TODO: replace with the team's real contact address before publishing -->
+      <a class="btn" href="mailto:team@example.com?subject=RS-1%20pilot%20program">Contact the team <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <p class="footer__brand"><img src="assets/ornecho-mark.png" alt="" width="740" height="477">Ornecho &copy; <span id="year">2026</span></p>
+    <nav aria-label="Footer">
+      <a href="#vehicle">Vehicle</a>
+      <a href="#technology">Technology</a>
+      <a href="#specs">Specs</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p>Airframe based on the Flightory Super Stingray VTOL design</p>
+  </div>
+</footer>
+
+<script src="js/mission.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>
